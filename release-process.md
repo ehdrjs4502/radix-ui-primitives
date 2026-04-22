@@ -1,43 +1,43 @@
-# Release process
+# 릴리즈 프로세스
 
-## Overview
+## 개요
 
-While our release schedule is flexible, our general strategy is to release several larger improvements inside each stable release. In order to provide faster access to fixes and enhancements between main releases we provide release candidates which are published on every merge into `main`.
+릴리즈 일정은 유연하지만, 일반적인 전략은 각 안정 릴리즈에 여러 주요 개선 사항을 포함하는 것입니다. 주요 릴리즈 사이에 수정 사항과 개선 사항을 더 빠르게 제공하기 위해 `main`에 병합될 때마다 게시되는 릴리즈 후보(RC)를 제공합니다.
 
-While the versioning and publishing of our primitives is mostly automated via scripts, updates to our [documentation website](https://radix-ui.com/primitives/docs/overview/introduction) is currently a manual process. We are working to improve this but for now this outline should help contributors with the process.
+프리미티브의 버전 관리 및 배포는 스크립트를 통해 대부분 자동화되어 있지만, [문서 웹사이트](https://radix-ui.com/primitives/docs/overview/introduction) 업데이트는 현재 수동 프로세스입니다. 이를 개선하기 위해 작업 중이지만, 현재로서는 이 개요가 기여자들에게 도움이 될 것입니다.
 
-## Release strategy
+## 릴리즈 전략
 
-We track versions during the pull request process. As features are added, modified or improved it's important to keep track of these via versioning.
+풀 리퀘스트 프로세스 중에 버전을 추적합니다. 기능이 추가, 수정 또는 개선될 때 버전 관리를 통해 이를 추적하는 것이 중요합니다.
 
-### Tracking version changes
+### 버전 변경 추적
 
-Run `pnpm changeset` to mark the appropriate type of change for those packages. This is later consumed when publishing new versions. Be sure to check-in these files along with your code changes.
+`pnpm changeset`을 실행하여 해당 패키지의 적절한 변경 유형을 표시합니다. 이는 나중에 새 버전을 배포할 때 사용됩니다. 코드 변경 사항과 함께 이 파일들을 반드시 커밋하세요.
 
-### Publishing a stable release
+### 안정 릴리즈 배포
 
-1. Checkout the `stable` branch and pull the latest changes from `main`
-2. Push the changes to `stable`. This will trigger the Changeset action, which will create a new release PR.
-3. Review the release PR, ensure all tests pass and make any necessary changes.
-4. Merge the PR. This will trigger the Changeset action to publish the new version to npm.
+1. `stable` 브랜치를 체크아웃하고 `main`의 최신 변경 사항을 가져옵니다.
+2. 변경 사항을 `stable`에 푸시합니다. 이렇게 하면 Changeset 액션이 트리거되어 새 릴리즈 PR이 생성됩니다.
+3. 릴리즈 PR을 검토하고, 모든 테스트가 통과하는지 확인한 후 필요한 변경을 수행합니다.
+4. PR을 병합합니다. 이렇게 하면 Changeset 액션이 트리거되어 새 버전이 npm에 배포됩니다.
 
-### Release candidates
+### 릴리즈 후보 (RC)
 
-Release candidates are automatically published when new changes are merged into `main`.
+릴리즈 후보는 새 변경 사항이 `main`에 병합될 때 자동으로 배포됩니다.
 
-## Updating documentation
+## 문서 업데이트
 
-Our documentation is in a [separate repository](https://github.com/radix-ui/website) and updating it is a three step process:
+문서는 [별도의 저장소](https://github.com/radix-ui/website)에 있으며 업데이트는 세 단계로 이루어집니다:
 
-1. Write and update the [change log](https://github.com/radix-ui/website/blob/main/data/primitives/docs/overview/releases.mdx)
-2. Bump package version/s and create / update the pages for each version change
-3. Perform documentation updates and remove live demos from previous versions
+1. [변경 로그](https://github.com/radix-ui/website/blob/main/data/primitives/docs/overview/releases.mdx)를 작성하고 업데이트합니다.
+2. 패키지 버전을 올리고 각 버전 변경에 대한 페이지를 생성하거나 업데이트합니다.
+3. 문서를 업데이트하고 이전 버전의 라이브 데모를 제거합니다.
 
-Steps 2 and 3 are typically raised as separate pull requests to make changes easier to review.
+2단계와 3단계는 변경 사항을 더 쉽게 검토할 수 있도록 일반적으로 별도의 풀 리퀘스트로 제출됩니다.
 
-### Creating new version pages
+### 새 버전 페이지 생성
 
-This is as simple as duplicating the latest page and updating the version number to match the release. Some things to keep in mind:
+최신 페이지를 복사하고 버전 번호를 릴리즈에 맞게 업데이트하면 됩니다. 몇 가지 유의사항:
 
-- We only provide live demos for the latest version of a package so you must remember to disable/remove the previous live demo (this avoids breaking changes affecting old versions in our docs)
-- If the incoming version is a patch which doesn't require a docs update then you can simply change the page name to match the new version rather than duplicating the same content
+- 최신 버전의 패키지에 대해서만 라이브 데모를 제공하므로, 이전 라이브 데모를 반드시 비활성화하거나 제거해야 합니다(이전 버전 문서에서 破壊적 변경이 영향을 미치는 것을 방지합니다).
+- 들어오는 버전이 문서 업데이트가 필요 없는 패치인 경우, 동일한 내용을 복사하는 대신 페이지 이름만 새 버전으로 변경하면 됩니다.

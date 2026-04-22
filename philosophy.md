@@ -1,91 +1,91 @@
-# Primitives: Philosophy and Guiding Principles
+# Primitives: 철학과 핵심 원칙
 
-## Vision
+## 비전
 
-Most of us share similar definitions for common UI patterns like accordion, checkbox, combobox, dialog, dropdown, select, slider, and tooltip. These UI patterns are [documented by WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/#aria_ex) and generally understood by the community.
+우리 대부분은 아코디언, 체크박스, 콤보박스, 다이얼로그, 드롭다운, 셀렉트, 슬라이더, 툴팁 같은 공통 UI 패턴에 대해 비슷한 정의를 공유합니다. 이러한 UI 패턴은 [WAI-ARIA 문서](https://www.w3.org/TR/wai-aria-practices/#aria_ex)에 정의되어 있으며 커뮤니티에서 일반적으로 이해되고 있습니다.
 
-However, the implementations provided to us by the web platform are inadequate. They're either non-existent, lacking in functionality, or cannot be customised sufficiently.
+그러나 웹 플랫폼이 제공하는 구현은 충분하지 않습니다. 아예 존재하지 않거나, 기능이 부족하거나, 충분히 커스터마이징할 수 없습니다.
 
-As a result, developers are forced to build custom components—an incredibly difficult task. As a result, most components on the web are inaccessible, non-performant, and lacking important features.
+그 결과 개발자들은 직접 커스텀 컴포넌트를 만들어야 하는데, 이는 매우 어려운 작업입니다. 그 결과 웹의 대부분 컴포넌트는 접근성이 부족하고, 성능이 낮으며, 중요한 기능이 빠져 있습니다.
 
-Our goal is to create a well-funded open-source component library that the community can use to build accessible design systems.
+우리의 목표는 커뮤니티가 접근 가능한 디자인 시스템을 구축하는 데 사용할 수 있는, 안정적으로 지원되는 오픈소스 컴포넌트 라이브러리를 만드는 것입니다.
 
-## Principles at a glance
+## 원칙 요약
 
-1. Accessible
-2. Functional
-3. Interoperable
-4. Composable
-5. Customizable
+1. 접근 가능 (Accessible)
+2. 기능적 (Functional)
+3. 상호 운용 가능 (Interoperable)
+4. 조합 가능 (Composable)
+5. 커스터마이징 가능 (Customizable)
 
 ---
 
-## Principles
+## 원칙
 
-### Accessible
+### 접근 가능 (Accessible)
 
-- Components adhere to WAI-ARIA guidelines and are tested regularly in a wide selection of modern browsers and assistive technologies.
-- Where WAI-ARIA guidelines do not cover a particular use case, prior research is done to determine the patterns and behaviors we adopt when designing a new component. We look to similar, well-tested native solutions to capture nuances that WAI-ARIA guidelines may overlook.
-- Developers should know about accessibility but shouldn't have to spend too much time implementing accessible patterns.
-- Most behavior and markup related to accessibility should be abstracted, and bits that can't should be simplified where possible.
-- Individual components will be tested to ensure maximum accessibility, but where app context is required the component library should provide useful guidance and supporting materials where possible to build fully accessible applications.
-- Try to name things as closely to `aria` and `html` as possible where applicable; wherever we require developers to engage with accessibility directly, our platform should be a learning opportunity and a bridge for better understanding the underlying problems we solve.
-- Components are thoroughly tested on a variety of devices and assistive technology, including all major screen reader vendors (VoiceOver, JAWS, NVDA); components respond and adapt effectively to input and appearance distinctions between platforms.
+- 컴포넌트는 WAI-ARIA 가이드라인을 준수하며, 다양한 최신 브라우저와 보조 기술 환경에서 정기적으로 테스트됩니다.
+- WAI-ARIA 가이드라인이 특정 사용 사례를 다루지 않는 경우, 새로운 컴포넌트를 설계할 때 채택할 패턴과 동작을 결정하기 위해 사전 조사를 진행합니다. WAI-ARIA 가이드라인이 놓칠 수 있는 세부 사항을 파악하기 위해 유사한 검증된 네이티브 솔루션을 참고합니다.
+- 개발자는 접근성에 대해 알아야 하지만, 접근 가능한 패턴을 구현하는 데 너무 많은 시간을 소비해서는 안 됩니다.
+- 접근성과 관련된 대부분의 동작과 마크업은 추상화되어야 하며, 추상화할 수 없는 부분은 최대한 단순화해야 합니다.
+- 개별 컴포넌트는 최대한의 접근성을 보장하기 위해 테스트되지만, 앱 컨텍스트가 필요한 경우 컴포넌트 라이브러리는 완전히 접근 가능한 애플리케이션을 구축하는 데 유용한 안내와 지원 자료를 제공해야 합니다.
+- 가능한 한 `aria` 및 `html`에 가깝게 이름을 지정합니다. 개발자가 접근성과 직접 상호작용해야 하는 경우, 우리 플랫폼은 학습 기회가 되고 근본적인 문제를 더 잘 이해하는 가교 역할을 해야 합니다.
+- 컴포넌트는 다양한 기기와 보조 기술(VoiceOver, JAWS, NVDA를 포함한 모든 주요 스크린 리더)에서 철저히 테스트되며, 플랫폼 간 입력 및 외관 차이에 효과적으로 반응하고 적응합니다.
 
-### Functional
+### 기능적 (Functional)
 
-- Components are feature-rich, with support for keyboard interaction, collision detection, focus trapping, dynamic resizing, scroll locking, native fallbacks, and more.
+- 컴포넌트는 키보드 인터랙션, 충돌 감지, 포커스 트래핑, 동적 크기 조정, 스크롤 잠금, 네이티브 폴백 등 풍부한 기능을 지원합니다.
 
-### Composable
+### 조합 가능 (Composable)
 
-- Components are designed with an open API that provides consumers with direct access to the underlying DOM node that is rendered to the page.
-- We achieve this API with a 1-to-1 strategy, where a single component only renders a single DOM element (if a DOM node is rendered at all).
-- Some abstractions may require slight deviation from this pattern, in which case the rationale should be clearly explained in supporting documentation.
-- This API also empowers us to forward user-provided DOM refs to the correct underlying DOM node without doing anything too clever, meaning refs function exactly as the consumer would expect.
-- Just as DOM nodes are composable, so are DOM event handlers; consumers should be able to pass their own event handlers directly to a component and stop internal handlers from firing.
+- 컴포넌트는 소비자가 페이지에 렌더링되는 기본 DOM 노드에 직접 접근할 수 있는 열린 API로 설계됩니다.
+- 단일 컴포넌트가 단일 DOM 요소만 렌더링하는 1-to-1 전략으로 이 API를 구현합니다(DOM 노드가 렌더링되는 경우).
+- 일부 추상화는 이 패턴에서 약간 벗어날 수 있으며, 이 경우 지원 문서에 그 이유를 명확히 설명해야 합니다.
+- 이 API는 ref가 소비자의 예상대로 정확히 동작하도록, 특별한 트릭 없이 사용자가 제공한 DOM ref를 올바른 기본 DOM 노드로 전달할 수 있게 합니다.
+- DOM 노드가 조합 가능하듯, DOM 이벤트 핸들러도 조합 가능합니다. 소비자는 자신의 이벤트 핸들러를 컴포넌트에 직접 전달하고 내부 핸들러의 실행을 막을 수 있어야 합니다.
 
-### Customizable
+### 커스터마이징 가능 (Customizable)
 
-- Components are built to be themed; no need to override opinionated styles, as primitives ship with zero presentational styles applied by default.
-- Components ship with CSS-in-JS style objects that provide a minimal set styles needed to easily reset user agent styles and provide a clean slate for consumers to build upon.
-- Our components can be composed or styled the same way underlying JSX components are composed or styled, with limitations only introduced to prevent UX/accessibility dark patterns where needed.
-- Consumers can choose whether or not to apply these styles in their app, as well as the styling tool; we do not enforce a particular methodology or library.
+- 컴포넌트는 테마 적용이 가능하도록 설계됩니다. 기본적으로 프리미티브는 프레젠테이션 스타일 없이 제공되므로 고집스러운 스타일을 재정의할 필요가 없습니다.
+- 컴포넌트는 사용자 에이전트 스타일을 쉽게 초기화하고 소비자가 구축할 수 있는 깔끔한 기반을 제공하는 최소한의 CSS-in-JS 스타일 객체를 함께 제공합니다.
+- 컴포넌트는 기본 JSX 컴포넌트와 동일한 방식으로 조합하거나 스타일을 적용할 수 있으며, UX/접근성 안티 패턴을 방지하기 위해 필요한 경우에만 제한이 도입됩니다.
+- 소비자는 앱에서 이러한 스타일을 적용할지 여부와 스타일링 도구를 자유롭게 선택할 수 있으며, 특정 방법론이나 라이브러리를 강제하지 않습니다.
 
-## Other considerations
+## 기타 고려사항
 
-### Internationalization
+### 국제화 (Internationalization)
 
-- Components support international string formatting and make behavioral adjustments for right-to-left languages
+- 컴포넌트는 국제 문자열 포맷을 지원하며 우에서 좌로 읽는 언어에 대한 동작 조정을 수행합니다.
 
-### Stateful components can be controlled or uncontrolled
+### 상태가 있는 컴포넌트는 제어 또는 비제어 방식으로 사용 가능
 
-- Similar to form field JSX elements in React, all components with internal state can either be uncontrolled (internally managed) or controlled (managed by the consumer)
+- React의 폼 필드 JSX 요소와 유사하게, 내부 상태를 가진 모든 컴포넌트는 비제어 방식(내부 관리) 또는 제어 방식(소비자가 관리)으로 사용할 수 있습니다.
 
-### Components exist in a finite number of predefined states
+### 컴포넌트는 유한한 수의 미리 정의된 상태로 존재
 
-- State in this context refers to a component's state representable by a finite state machine; not to be confused with arbitrary stateful data as typically referenced in React libraries
-- States are predetermined during the component design phase and expressed as strings in component code, making state transitions more explicit, deterministic, and clearer to follow
-- Use the `data-state` attribute to expose a component's state directly to its DOM element
-- When tempted to use a boolean to track a piece of stateful data, consider enumerated strings instead
+- 여기서 상태란 유한 상태 기계로 표현 가능한 컴포넌트의 상태를 의미하며, React 라이브러리에서 일반적으로 언급되는 임의의 상태 데이터와 혼동해서는 안 됩니다.
+- 상태는 컴포넌트 설계 단계에서 미리 결정되며, 컴포넌트 코드에서 문자열로 표현되어 상태 전환을 더 명시적이고 결정적이며 파악하기 쉽게 합니다.
+- `data-state` 속성을 사용하여 컴포넌트의 상태를 DOM 요소에 직접 노출합니다.
+- 상태 데이터를 추적하기 위해 불리언을 사용하고 싶을 때는 대신 열거형 문자열을 고려하세요.
 
-### Developer experience
+### 개발자 경험 (Developer Experience)
 
-- Component APIs should be relatively intuitive and as declarative as possible
-- Provide in-code documentation for complex/unclear abstractions for easier source debugging
-- Anticipate errors and provide thorough console warnings with links back to documentation
+- 컴포넌트 API는 비교적 직관적이고 최대한 선언적이어야 합니다.
+- 소스 디버깅을 쉽게 하기 위해 복잡하거나 불명확한 추상화에 코드 내 문서를 제공합니다.
+- 오류를 예측하고 문서로 연결되는 링크를 포함한 충분한 콘솔 경고를 제공합니다.
 
-### Balancing tradeoffs between design goals
+### 설계 목표 간의 트레이드오프 균형
 
-- Composition is preferred over configuration
-- Code clarity is preferred over bundle terseness except in extreme cases
-- Smart abstractions preferred over over-exposing internal state
+- 설정보다 조합을 선호합니다.
+- 극단적인 경우를 제외하고는 번들 크기 최소화보다 코드 명확성을 선호합니다.
+- 내부 상태를 과도하게 노출하는 것보다 스마트한 추상화를 선호합니다.
 
-### Documentation
+### 문서화 (Documentation)
 
 TODO
 
-### Misc
+### 기타
 
-- Not concerned with design system components like `Box`, `Chip` or `Badge` that provide visual language consistency but provide no underlying semantic meaning or abstracted behavior
-- Keep file structure flat so logic is easier to follow; avoid early abstractions
-- Don't repeat yourself _too much_ but don't be afraid to repeat yourself if an implementation detail hasn't been thoroughly vetted
+- 시각적 언어 일관성을 제공하지만 기본 시맨틱 의미나 추상화된 동작을 제공하지 않는 `Box`, `Chip`, `Badge` 같은 디자인 시스템 컴포넌트는 관심 대상이 아닙니다.
+- 로직을 따라가기 쉽도록 파일 구조를 평탄하게 유지하며 조기 추상화를 피합니다.
+- 구현 세부사항이 충분히 검증되지 않은 경우 반복을 두려워하지 않되, 과도한 반복은 피합니다.
