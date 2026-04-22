@@ -187,6 +187,62 @@ package.json `exports` 필드로 환경별 파일 지정:
 | 포매팅 | Prettier | 최소 설정 |
 | CI/CD | GitHub Actions | 무료, 통합 쉬움 |
 
+### 핵심 도구 설명
+
+#### tsup
+esbuild 기반 번들러. TypeScript 라이브러리 배포에 특화되어 있다.
+
+- ESM(`.mjs`) + CJS(`.js`) + 타입 선언(`.d.ts`) 세 가지를 **명령어 하나**로 빌드
+- 설정 파일 없이도 동작 (`tsup src/index.ts --format esm,cjs --dts`)
+- 내부적으로 esbuild를 쓰므로 빠름
+- Radix는 esbuild + tsup을 분리해 쓰지만, 우리는 tsup만으로 통일
+
+```ts
+// tsup.config.ts
+export default defineConfig({
+  entry: ['src/index.ts'],
+  format: ['esm', 'cjs'],
+  dts: true,
+  external: ['react'],
+});
+```
+
+#### Storybook
+컴포넌트를 **앱 없이 독립적으로 개발·문서화**하는 도구.
+
+- 각 컴포넌트의 상태(checked, disabled, open 등)를 story로 정의해두면 브라우저에서 바로 확인 가능
+- `args` / `argTypes`로 props를 UI에서 실시간 조작 (Controls 패널)
+- MDX로 사용법 문서 작성 가능 → 컴포넌트 개발과 문서화를 동시에
+- `@storybook/addon-a11y`로 접근성 자동 검사도 가능
+
+```tsx
+// checkbox.stories.tsx
+export const Checked: Story = {
+  args: { checked: true, disabled: false },
+};
+```
+
+#### Changesets
+모노레포에서 **패키지별 버전 관리와 changelog 자동화**를 담당.
+
+- PR 작성 시 `.changeset/랜덤이름.md` 파일을 같이 커밋
+  - 어떤 패키지가 어떤 종류(major/minor/patch)로 바뀌었는지 기록
+- 배포 시 `changeset version` 실행 → 각 패키지 `package.json` 버전 자동 올림 + `CHANGELOG.md` 생성
+- 이후 `pnpm publish -r` 로 변경된 패키지만 npm 배포
+
+```
+# .changeset/brave-dogs-fly.md
+---
+"@bamti/checkbox": patch
+---
+
+Fix: indeterminate 상태에서 Space 키 동작 수정
+```
+
+> 핵심 흐름: **PR에 changeset 추가 → merge → `version` 명령으로 버전 반영 → npm publish**
+
+---
+
 ### 미확정 사항 (~10%)
 
 - **모노레포 툴링**: pnpm workspaces만 쓸지 vs Turborepo 추가할지
