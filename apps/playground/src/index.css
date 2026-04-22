@@ -1,0 +1,29 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #f9f9f9;
+  color: #111;
+}
+
+button {
+  font-family: inherit;
+  font-size: 14px;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button:hover {
+  background: #e0e0e0;
+}
+
+[data-state='checked'] {
+  background-color: #6366f1 !important;
+}
+
+[data-state='checked'] span {
+  transform: translateX(19px) !important;
+}
